@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/gradely.iml" filepath="$PROJECT_DIR$/.idea/gradely.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Gradely.iml" filepath="$PROJECT_DIR$/Gradely.iml" />
     </modules>
   </component>
 </project>
