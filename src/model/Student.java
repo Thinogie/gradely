@@ -6,7 +6,7 @@ import java.util.Set;
 
 public class Student {
     // Fields to store student information
-    private final String name; // Student's name
+    private final String name; //Student's name
     private final String studentId; // Unique student ID
     private final String email; // Student's email address
     private final int marks; // Marks obtained by the student
