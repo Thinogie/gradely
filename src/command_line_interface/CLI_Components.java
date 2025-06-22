@@ -8,6 +8,7 @@ import java.io.PrintStream;
 import java.util.List;
 import java.util.Scanner;
 
+import static service.ResultsAnalyzer.averageMarks;
 import static service.ResultsAnalyzer.sortByMarks;
 
 public class CLI_Components {
@@ -71,9 +72,9 @@ public class CLI_Components {
                                 heading = "Student Results sorted from Highest to Lowest Marks";
                                 ResultsFileWriter.printResultsTableToFile(students, fileOut, heading);
                                 break;
-                            case "3" : // average and top student not printed in txt file
+                            case "3" :
                                 heading = "Student Results Analysis Report";
-                                ResultsFileWriter.printResultsTableToFile(students, fileOut, heading);
+                                ResultsFileWriter.printResultsAnalysisToFile(students, fileOut, ResultsAnalyzer.topStudent, averageMarks, heading);
                                 break;
                             case "4" :
                                 heading = "Top Performers Report";

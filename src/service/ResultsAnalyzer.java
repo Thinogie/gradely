@@ -7,16 +7,18 @@ import java.util.Comparator;
 import java.util.List;
 
 public class ResultsAnalyzer {
+    public static int totalMarks = 0;
+    public static int highestMarks = Integer.MIN_VALUE;
+    public static int lowestMarks = Integer.MAX_VALUE;
+    public static Student topStudent = null;
+    public static double averageMarks = 0;
+
     public static void resultsReport(List<Student> students) {
         if (students == null || students.isEmpty()) {
             System.out.println(CLI_Styling.RED + "⚠️ No students to analyze." + CLI_Styling.RESET);
             return;
         }
 
-        int totalMarks = 0;
-        int highestMarks = Integer.MIN_VALUE;
-        int lowestMarks = Integer.MAX_VALUE;
-        Student topStudent = null;
 
         for (Student student : students) {
             int marks = student.getMarks();
@@ -31,7 +33,7 @@ public class ResultsAnalyzer {
             }
         }
 
-        double averageMarks = (double) totalMarks / students.size();
+        averageMarks = (double) totalMarks / students.size();
 
         sortByName(students);
 
@@ -87,12 +89,13 @@ public class ResultsAnalyzer {
 
     private static void displayResultsAnalysis(List<Student> students, Student topStudent, double averageMarks) {
         System.out.println();
-        System.out.printf(String.format(CLI_Styling.BLUE + "%37s\n" + CLI_Styling.DOUBLE_BORDER_SHORT + CLI_Styling.RESET + "\n", "🧾 RESULTS ANALYSIS REPORT"));
-        System.out.println("🏆 Top Student: " + CLI_Styling.GREEN +
-                (topStudent != null ? topStudent.getName() + " (" + topStudent.getMarks() + " marks)" : "N/A") + CLI_Styling.RESET+"\n");
-        displayResultsTable(students);
+        System.out.printf(String.format(CLI_Styling.BLUE + "%37s\n" + CLI_Styling.DOUBLE_BORDER_SHORT + CLI_Styling.RESET + "\n", "🧾 RESULTS ANALYSIS REPORT")+"\n");
+        System.out.println( CLI_Styling.GREEN +"Top Student: " +
+                (topStudent != null ? topStudent.getName() + " (" + topStudent.getMarks() + " marks)" : "N/A") + CLI_Styling.RESET);
         System.out.println(CLI_Styling.GREEN + "Total Students: " + students.size());
         System.out.printf("Class Average: %.2f%n", averageMarks);
+        System.out.println();
+        displayResultsTable(students);
         System.out.println(CLI_Styling.RESET);
     }
 

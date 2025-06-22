@@ -24,11 +24,13 @@ public class CLI_Styling {
 
     public static final String TABLE_OUTLINE = "---------------------------------------------------";
 
-    public static final String RESULTS_TABLE_HEADING = String.format("%-28s %-16s %-12s", "Name", "Student ID", "Marks");
-    public static final String INFO_TABLE_HEADING = String.format("%-28s %-17s %-12s", "Name", "Student ID", "Email");
+    public static final String RESULTS_TABLE_HEADING = String.format("%-27s %-16s %-11s", "Name", "Student ID", "Marks");
+    public static final String INFO_TABLE_HEADING = String.format("%-27s %-17s %-11s", "Name", "Student ID", "Email");
     public static final String RESULTS_HEADING = CLI_Styling.BLUE + String.format("\n" + "%35s", "🧾 Student Results Table" + "\n")
             + CLI_Styling.DOUBLE_BORDER_SHORT + CLI_Styling.RESET;
 
+    public static final String RESULTS_FILE_HEADING = "\n" + CLI_Styling.TABLE_OUTLINE + "\n" + CLI_Styling.RESULTS_TABLE_HEADING + "\n" + CLI_Styling.TABLE_OUTLINE ;
+    public static final String INFO_FILE_HEADING =  "\n" + CLI_Styling.DOTTED_BORDER_LONG + "\n" + CLI_Styling.INFO_TABLE_HEADING + "\n" + CLI_Styling.DOTTED_BORDER_LONG;
 
 }
 
