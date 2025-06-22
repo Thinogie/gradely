@@ -2,6 +2,7 @@ package command_line_interface;
 
 import model.Student;
 import service.ResultsAnalyzer;
+import service.ResultsFileWriter;
 
 import java.io.PrintStream;
 import java.util.List;
@@ -63,22 +64,27 @@ public class CLI_Components {
                         String heading;
                         switch (analysisChoice) {
                             case "1" :
-                                heading = "Results sorted by Students Names";
-                                printStudentInfoToFile(students, fileOut, heading);
+                                heading = "Student Results sorted by Students Names";
+                                ResultsFileWriter.printResultsTableToFile(students, fileOut, heading);
                                 break;
                             case "2":
-                                heading = "Results sorted from Highest to Lowest Marks";
-                                printResultsTableToFile(students, fileOut, heading);
+                                heading = "Student Results sorted from Highest to Lowest Marks";
+                                ResultsFileWriter.printResultsTableToFile(students, fileOut, heading);
                                 break;
                             case "3" : // average and top student not printed in txt file
-                                heading = "Results Analysis Report";
-                                printResultsTableToFile(students, fileOut, heading);
+                                heading = "Student Results Analysis Report";
+                                ResultsFileWriter.printResultsTableToFile(students, fileOut, heading);
                                 break;
                             case "4" :
                                 heading = "Top Performers Report";
-                                printTopStudentsToFile(students, fileOut,3, heading);
+                                ResultsFileWriter.printTopStudentsToFile(students, fileOut,3, heading);
                                 break;
-                            default :printStudentInfoToFile(students, fileOut, "Student Details");
+                            case "5":
+                                heading = "Student Details";
+                                ResultsFileWriter.printStudentInfoToFile(students, fileOut, heading);
+                                break;
+                            default :
+                                System.out.println(CLI_Styling.RED + "Invalid Choice. No document exported." + CLI_Styling.RESET);
                                 break;
                         }
                         fileOut.close();
@@ -127,40 +133,6 @@ public class CLI_Components {
         System.out.println("0. Exit Program");
         System.out.println(CLI_Styling.BLUE + CLI_Styling.BOTTOM_BORDER + CLI_Styling.RESET);
     }
-    public static void printStudentInfoToFile(List<Student> students, PrintStream writer, String heading) {
-        if (students == null || students.isEmpty()) {
-            writer.println("⚠️ No students to display.");
-            return;
-        }
-
-        writer.println(heading);
-        writer.println(CLI_Styling.DOTTED_BORDER_LONG);
-        writer.printf("%-25s %-15s %-30s%n", "Name", "Student ID", "Email");
-        writer.println(CLI_Styling.DOTTED_BORDER_LONG);
-
-        for (Student student : students) {
-            writer.printf("%-25s %-15s %-30s%n", student.getName(), student.getStudentId(), student.getEmail());
-        }
-        writer.println(CLI_Styling.DOTTED_BORDER_LONG);
-        writer.println();
-    }
-    public static void printResultsTableToFile(List<Student> students, PrintStream writer, String heading) {
-        if (students == null || students.isEmpty()) {
-            writer.println("⚠️ No students to display.");
-            return;
-        }
-        writer.println(heading);
-        writer.println(CLI_Styling.DOTTED_BORDER_SHORT);
-        writer.printf("%-25s %-15s %-15s%n", "Name", "Student ID", "Marks");
-        writer.println(CLI_Styling.DOTTED_BORDER_SHORT);
-        for (Student student : students) {
-            writer.printf("%-25s %-15s %-15d%n", student.getName(), student.getStudentId(), student.getMarks());
-        }
-        writer.println(CLI_Styling.DOTTED_BORDER_SHORT);
-        writer.println();
-    }
-
-
     public static String promptForName(Scanner scanner) {
         while (true) {
             System.out.print("Enter student name: " + CLI_Styling.RESET);
@@ -191,22 +163,5 @@ public class CLI_Components {
             }
         }
     }
-    public static void printTopStudentsToFile(List<Student> students, PrintStream writer, int topN, String heading) {
-        if (students == null || students.isEmpty()) {
-            writer.println("⚠️ No students to display.");
-            return;
-        }
-        // Sort by marks in descending order
-        sortByMarks(students);
-        writer.println(heading);
-        writer.println(CLI_Styling.DOTTED_BORDER_SHORT);
-        writer.printf("%-25s %-15s %-15s%n", "Name", "Student ID", "Marks");
-        writer.println(CLI_Styling.DOTTED_BORDER_SHORT);
 
-        for (int i = 0; i < Math.min(topN, students.size()); i++) {
-            Student student = students.get(i);
-            writer.printf("%-25s %-15s %-15d%n", student.getName(), student.getStudentId(), student.getMarks());
-        }
-        writer.println(CLI_Styling.DOTTED_BORDER_SHORT);
-    }
 }

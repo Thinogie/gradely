@@ -18,8 +18,17 @@ public class CLI_Styling {
         public static final String ANALYSIS_BORDER ="════════════════════ ANALYZE ═══════════════════";
         public static final String BOTTOM_BORDER = "════════════════════════════════════════════════";
 
-        public static final String DOTTED_BORDER_SHORT = "--------------------------------------------------";
-        public static final String DOTTED_BORDER_LONG="------------------------------------------------------------------------";
+        public static final String DOTTED_BORDER_SHORT = "------------------------------------------------";
+        public static final String DOTTED_BORDER_LONG="---------------------------------------------------------------------------";
+
+        public static final String TABLE_OUTLINE="---------------------------------------------------";
+        public static final String RESULTS_TABLE_HEADING = "Name                        Student ID       Marks       ";
+        public static final String INFO_TABLE_HEADING = "Name                        Student ID        Email       ";
+
+
+
+
+
 
 
 
