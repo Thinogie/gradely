@@ -19,25 +19,20 @@ public class CLI_Components {
 
             switch (analysisChoice) {
                 case "1":
-                    System.out.println(CLI_Styling.GREEN + "Sorted by name." + CLI_Styling.RESET);
                     ResultsAnalyzer.sortByName(students);
                     ResultsAnalyzer.printResultsTable(students);
                     break;
                 case "2":
-                    System.out.println(CLI_Styling.GREEN + "Sorted by marks." + CLI_Styling.RESET);
                     sortByMarks(students);
                     ResultsAnalyzer.printResultsTable(students);
                     break;
                 case "3":
-                    System.out.println(CLI_Styling.GREEN + "Results analysis report generated." + CLI_Styling.RESET);
                     ResultsAnalyzer.resultsReport(students);
                     break;
                 case "4":
-                    System.out.println(CLI_Styling.GREEN + "Top students displayed." + CLI_Styling.RESET);
                     ResultsAnalyzer.printTopStudents(students, 3);
                     break;
                 case "5":
-                    System.out.println(CLI_Styling.GREEN + "Printed Student Details" + CLI_Styling.RESET);
                     ResultsAnalyzer.printStudentDetails(students);
                     break;
                 case "0":
@@ -79,7 +74,7 @@ public class CLI_Components {
                                 heading = "Results Analysis Report";
                                 printResultsTableToFile(students, fileOut, heading);
                                 break;
-                            case "4" : // all students printed not top performers
+                            case "4" :
                                 heading = "Top Performers Report";
                                 printTopStudentsToFile(students, fileOut,3, heading);
                                 break;
@@ -138,7 +133,7 @@ public class CLI_Components {
             return;
         }
 
-        writer.println("\n" + heading);
+        writer.println(heading);
         writer.println(CLI_Styling.DOTTED_BORDER_LONG);
         writer.printf("%-25s %-15s %-30s%n", "Name", "Student ID", "Email");
         writer.println(CLI_Styling.DOTTED_BORDER_LONG);
@@ -154,7 +149,7 @@ public class CLI_Components {
             writer.println("⚠️ No students to display.");
             return;
         }
-        writer.println("\n" + heading);
+        writer.println(heading);
         writer.println(CLI_Styling.DOTTED_BORDER_SHORT);
         writer.printf("%-25s %-15s %-15s%n", "Name", "Student ID", "Marks");
         writer.println(CLI_Styling.DOTTED_BORDER_SHORT);
@@ -203,7 +198,7 @@ public class CLI_Components {
         }
         // Sort by marks in descending order
         sortByMarks(students);
-        writer.println("\n           🎖️ Top " + topN + " Students:");
+        writer.println(heading);
         writer.println(CLI_Styling.DOTTED_BORDER_SHORT);
         writer.printf("%-25s %-15s %-15s%n", "Name", "Student ID", "Marks");
         writer.println(CLI_Styling.DOTTED_BORDER_SHORT);

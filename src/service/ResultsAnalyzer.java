@@ -3,7 +3,6 @@ package service;
 import command_line_interface.CLI_Styling;
 import model.Student;
 
-import java.io.PrintStream;
 import java.util.Comparator;
 import java.util.List;
 
