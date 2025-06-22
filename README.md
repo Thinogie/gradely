@@ -16,15 +16,15 @@
 
 ## 🛠️ Tech Stack
 
-| Category         | Technology              | Description                                                             |
-|------------------|--------------------------|-------------------------------------------------------------------------|
-| **Language**     | Java (8+)               | Core programming language used for CLI logic and OOP structure          |
-| **Interface**    | Command Line (Terminal) | User interface powered by styled ANSI output in the terminal            |
-| **Compilation**  | `javac`                 | Java compiler for compiling `.java` source files                        |
-| **Execution**    | `java`                  | JVM runtime environment to execute the compiled class files             |
-| **File Handling**| Java IO (`File`, `Scanner`, `PrintWriter`) | For reading `.txt` input files and writing export reports       |
-| **Project Type** | Console Application     | Lightweight, cross-platform, no external libraries or dependencies      |
-| **Build Tool**   | None                    | Manual build and execution (no Maven/Gradle needed)                     |
+| Category          | Technology                                 | Description                                                        |
+|-------------------|--------------------------------------------|--------------------------------------------------------------------|
+| **Language**      | Java (8+)                                  | Core programming language used for CLI logic and OOP structure     |
+| **Interface**     | Command Line (Terminal)                    | User interface powered by styled ANSI output in the terminal       |
+| **Compilation**   | `javac`                                    | Java compiler for compiling `.java` source files                   |
+| **Execution**     | `java`                                     | JVM runtime environment to execute the compiled class files        |
+| **File Handling** | Java IO (`File`, `Scanner`, `PrintWriter`) | For reading `.txt` input files and writing export reports          |
+| **Project Type**  | Console Application                        | Lightweight, cross-platform, no external libraries or dependencies |
+| **Build Tool**    | None                                       | Manual build and execution (no Maven/Gradle needed)                |
 
 
 ---
@@ -43,7 +43,7 @@ Gradely/
 │   │   └── Student.java                    # Student data model
 │   └── service/
 │       └── ResultsAnalyzer.java           # Logic for analysis, sorting, exporting
-│
+│       └── ResultsFileWriter.java             # Handles writing/exporting analysis reports
 ├── analysis_report_*.txt                  # Generated report files (on runtime)
 ├── README.md
 └── .gitignore

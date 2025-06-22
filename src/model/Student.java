@@ -4,9 +4,14 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
+/**
+ * The Student class represents a student with a name, email, unique ID, and marks.
+ * It ensures that each student has a unique ID and provides methods to access
+ * the student's details.
+ */
 public class Student {
     // Fields to store student information
-    private final String name; //Student's name
+    private final String name; // Student's name
     private final String studentId; // Unique student ID
     private final String email; // Student's email address
     private final int marks; // Marks obtained by the student
@@ -14,7 +19,14 @@ public class Student {
     // Static Set to keep track of all generated student IDs to ensure uniqueness
     private static final Set<String> generatedIds = new HashSet<>();
 
-    // Constructor to initialize a Student object
+    /**
+     * Constructs a Student object with the specified name, email, and marks.
+     * A unique student ID is automatically generated.
+     *
+     * @param name  The name of the student.
+     * @param email The email address of the student.
+     * @param marks The marks obtained by the student.
+     */
     public Student(String name, String email, int marks) {
         this.name = name; // Assign the name
         this.email = email; // Assign the email
@@ -22,7 +34,12 @@ public class Student {
         this.studentId = generateUniqueStudentId(); // Generate a unique student ID
     }
 
-    // Method to generate a unique student ID
+    /**
+     * Generates a unique student ID in the format "SXXXX", where XXXX is a
+     * random 4-digit number. Ensures that the ID is not already in use.
+     *
+     * @return A unique student ID.
+     */
     private String generateUniqueStudentId() {
         Random random = new Random(); // Random object for generating random numbers
         String newId; // Variable to store the new ID
@@ -34,29 +51,55 @@ public class Student {
         return newId; // Return the unique ID
     }
 
-    // Getter method for the student's name
+    /**
+     * Gets the name of the student.
+     *
+     * @return The student's name.
+     */
     public String getName() {
         return name;
     }
 
-    // Getter method for the student's email
+    /**
+     * Gets the email address of the student.
+     *
+     * @return The student's email address.
+     */
     public String getEmail() {
         return email;
     }
 
-    // Getter method for the student's marks
+    /**
+     * Gets the marks obtained by the student.
+     *
+     * @return The student's marks.
+     */
     public int getMarks() {
         return marks;
     }
 
-    // Getter method for the student's unique ID
+    /**
+     * Gets the unique ID of the student.
+     *
+     * @return The student's unique ID.
+     */
     public String getStudentId() {
         return studentId;
     }
 
-    // Override the toString method to provide a string representation of the Student object
+    /**
+     * Returns a string representation of the Student object, including
+     * the name, email, student ID, and marks.
+     *
+     * @return A string representation of the student.
+     */
     @Override
     public String toString() {
-        return "Student{" + "name='" + name + '\'' + ", email='" + email + '\'' + ", studentId='" + studentId + '\'' + ", marks=" + marks + '}';
+        return "Student{" +
+                "name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", studentId='" + studentId + '\'' +
+                ", marks=" + marks +
+                '}';
     }
 }

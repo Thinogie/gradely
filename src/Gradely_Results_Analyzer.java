@@ -6,8 +6,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * The Gradely_Results_Analyzer class serves as the entry point for the application.
+ * It provides a command-line interface for managing student data, including adding
+ * students manually or importing from a file, and analyzing their results.
+ */
 public class Gradely_Results_Analyzer {
 
+    /**
+     * The main method initializes the application, displays the main menu, and handles
+     * user input for various operations such as adding students, importing data, and
+     * running analysis.
+     *
+     * @param args Command-line arguments (not used in this application).
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         List<Student> students = new ArrayList<>();
@@ -42,6 +54,7 @@ public class Gradely_Results_Analyzer {
                     // Show analysis menu after adding students
                     CLI_Components.runAnalysisMenu(students, scanner);
                 case "2":
+                    // Import student data from a file
                     System.out.print("Enter the file path to read student data: " + CLI_Styling.RESET);
                     String filePath = scanner.nextLine().trim();
 
@@ -95,10 +108,12 @@ public class Gradely_Results_Analyzer {
                     break;
 
                 case "0":
+                    // Exit the program
                     System.out.println(CLI_Styling.YELLOW + "Exiting the program. Goodbye! 👋" + CLI_Styling.RESET);
                     running = false;
                     break;
                 default:
+                    // Handle invalid input
                     System.out.println(CLI_Styling.RED + "Invalid option. Please select 1 or 2 to continue." + CLI_Styling.RESET);
             }
         }
