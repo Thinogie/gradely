@@ -95,7 +95,7 @@ public class Gradely_Results_Analyzer {
                     break;
 
                 case "0":
-                    System.out.println(CLI_Styling.YELLOW + "\nExiting the program. Goodbye! 👋" + CLI_Styling.RESET);
+                    System.out.println(CLI_Styling.YELLOW + "Exiting the program. Goodbye! 👋" + CLI_Styling.RESET);
                     running = false;
                     break;
                 default:

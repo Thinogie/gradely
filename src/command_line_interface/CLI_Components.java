@@ -21,20 +21,22 @@ public class CLI_Components {
             switch (analysisChoice) {
                 case "1":
                     ResultsAnalyzer.sortByName(students);
-                    ResultsAnalyzer.printResultsTable(students);
+                    System.out.println(CLI_Styling.RESULTS_HEADING);
+                    ResultsAnalyzer.displayResultsTable(students);
                     break;
                 case "2":
                     sortByMarks(students);
-                    ResultsAnalyzer.printResultsTable(students);
+                    System.out.println(CLI_Styling.RESULTS_HEADING);
+                    ResultsAnalyzer.displayResultsTable(students);
                     break;
                 case "3":
                     ResultsAnalyzer.resultsReport(students);
                     break;
                 case "4":
-                    ResultsAnalyzer.printTopStudents(students, 3);
+                    ResultsAnalyzer.displayTopStudents(students, 3);
                     break;
                 case "5":
-                    ResultsAnalyzer.printStudentDetails(students);
+                    ResultsAnalyzer.displayStudentDetails(students);
                     break;
                 case "0":
                     System.out.println(CLI_Styling.YELLOW + "Exiting the program. Goodbye! 👋" + CLI_Styling.RESET);
@@ -44,9 +46,8 @@ public class CLI_Components {
                     System.out.println(CLI_Styling.RED + "Invalid option. Please select a valid analysis option." + CLI_Styling.RESET);
                     continue;
             }
-
-            System.out.println(CLI_Styling.YELLOW + "\n💡 What would you like to do next?\n"
-                    +"1. Continue with analysis\n"+"2. Export above document to a text file\n"+ "0. Exit program" + CLI_Styling.RESET);
+            System.out.println(CLI_Styling.YELLOW + "💡 What would you like to do next?\n");
+            System.out.println("1. Continue with analysis\n"+"2. Export above document to a text file\n"+ "0. Exit program" + CLI_Styling.RESET);
             String nextAction = scanner.nextLine().trim();
 
             switch (nextAction) {
@@ -104,34 +105,28 @@ public class CLI_Components {
         }
     }
     public static void printInstructions() {
-        System.out.println(CLI_Styling.WELCOME_BANNER);
-        System.out.println(CLI_Styling.YELLOW + "💡 Instructions:\n" + CLI_Styling.RESET+"\n"+
+        System.out.println(CLI_Styling.WELCOME_BANNER+"\n"+CLI_Styling.YELLOW +"💡 Instructions: \n");
+        System.out.println(
                 "* Select options from the menus by entering the corresponding number."+"\n"+
                 "* Ensure that the student details are valid."+"\n"+
-                "* Provide a valid email address."+"\n"+ "* You can either add students manually or read from a file.");
+                "* Provide a valid email address."+"\n"+ "* You can either add students manually or read from a file."+"\n"+ CLI_Styling.RESET);
     }
 
     public static void printMainMenu() {
-        System.out.println();
-        System.out.println(CLI_Styling.BLUE + CLI_Styling.MENU_BORDER + CLI_Styling.RESET);
-        System.out.println("""
+        System.out.println(CLI_Styling.BLUE + CLI_Styling.MENU_BORDER + CLI_Styling.RESET+"\n"+"""
                 1. Add student data manually
                 2. Import student data from a text file
-                0. Exit Program""");
-        System.out.println(CLI_Styling.BLUE + CLI_Styling.BOTTOM_BORDER + CLI_Styling.RESET);
+                0. Exit Program"""+"\n"+CLI_Styling.BLUE + CLI_Styling.DOUBLE_BORDER_SHORT + CLI_Styling.RESET+"\n");
     }
 
     static void printAnalysisMenu() {
-        System.out.println();
-        System.out.println(CLI_Styling.BLUE + CLI_Styling.ANALYSIS_BORDER + CLI_Styling.RESET);
-        System.out.println("""
+        System.out.println(CLI_Styling.BLUE + CLI_Styling.ANALYSIS_BORDER + CLI_Styling.RESET+"\n"+"""
                 1. Sort students by name alphabetically
                 2. Sort students by marks\s
                 3. View results analysis report
                 4. View top students
                 5. Print student details
-                0. Exit Program""");
-        System.out.println(CLI_Styling.BLUE + CLI_Styling.BOTTOM_BORDER + CLI_Styling.RESET);
+                0. Exit Program"""+"\n"+CLI_Styling.BLUE + CLI_Styling.DOUBLE_BORDER_SHORT + CLI_Styling.RESET+"\n");
     }
     public static String promptForName(Scanner scanner) {
         while (true) {
