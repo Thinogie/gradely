@@ -42,8 +42,8 @@ Gradely/
 │   ├── model/
 │   │   └── Student.java                    # Student data model
 │   └── service/
-│       └── ResultsAnalyzer.java           # Logic for analysis, sorting, exporting
-│       └── ResultsFileWriter.java             # Handles writing/exporting analysis reports
-├── analysis_report_*.txt                  # Generated report files (on runtime)
+│       └── ResultsAnalyzer.java            # Logic for analysis, sorting, exporting
+│       └── ResultsFileWriter.java          # Handles writing/exporting analysis reports
+├── analysis_report_*.txt                   # Generated report files (on runtime)
 ├── README.md
 └── .gitignore
