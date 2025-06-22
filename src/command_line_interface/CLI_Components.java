@@ -7,6 +7,8 @@ import java.io.PrintStream;
 import java.util.List;
 import java.util.Scanner;
 
+import static service.ResultsAnalyzer.sortByMarks;
+
 public class CLI_Components {
 
     public static void runAnalysisMenu(List<Student> students, Scanner scanner) {
@@ -23,7 +25,7 @@ public class CLI_Components {
                     break;
                 case "2":
                     System.out.println(CLI_Styling.GREEN + "Sorted by marks." + CLI_Styling.RESET);
-                    ResultsAnalyzer.sortByMarks(students);
+                    sortByMarks(students);
                     ResultsAnalyzer.printResultsTable(students);
                     break;
                 case "3":
@@ -79,7 +81,7 @@ public class CLI_Components {
                                 break;
                             case "4" : // all students printed not top performers
                                 heading = "Top Performers Report";
-                                printResultsTableToFile(students, fileOut, heading);
+                                printTopStudentsToFile(students, fileOut,3, heading);
                                 break;
                             default :printStudentInfoToFile(students, fileOut, "Student Details");
                                 break;
@@ -105,7 +107,7 @@ public class CLI_Components {
         System.out.println(CLI_Styling.WELCOME_BANNER);
         System.out.println(CLI_Styling.YELLOW + "💡 Instructions:\n" + CLI_Styling.RESET);
         System.out.println("* Select options from the menus by entering the corresponding number.");
-        System.out.println("* Ensure that the student details are valid:");
+        System.out.println("* Ensure that the student details are valid.");
         System.out.println("* Provide a valid email address.");
         System.out.println("* You can either add students manually or read from a file.");
     }
@@ -193,5 +195,23 @@ public class CLI_Components {
                 System.out.println(CLI_Styling.RED + "Invalid number. Please enter an integer.\n" + CLI_Styling.RESET);
             }
         }
+    }
+    public static void printTopStudentsToFile(List<Student> students, PrintStream writer, int topN, String heading) {
+        if (students == null || students.isEmpty()) {
+            writer.println("⚠️ No students to display.");
+            return;
+        }
+        // Sort by marks in descending order
+        sortByMarks(students);
+        writer.println("\n           🎖️ Top " + topN + " Students:");
+        writer.println(CLI_Styling.DOTTED_BORDER_SHORT);
+        writer.printf("%-25s %-15s %-15s%n", "Name", "Student ID", "Marks");
+        writer.println(CLI_Styling.DOTTED_BORDER_SHORT);
+
+        for (int i = 0; i < Math.min(topN, students.size()); i++) {
+            Student student = students.get(i);
+            writer.printf("%-25s %-15s %-15d%n", student.getName(), student.getStudentId(), student.getMarks());
+        }
+        writer.println(CLI_Styling.DOTTED_BORDER_SHORT);
     }
 }

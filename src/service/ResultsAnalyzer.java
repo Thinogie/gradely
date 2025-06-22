@@ -3,6 +3,7 @@ package service;
 import command_line_interface.CLI_Styling;
 import model.Student;
 
+import java.io.PrintStream;
 import java.util.Comparator;
 import java.util.List;
 
@@ -72,6 +73,7 @@ public class ResultsAnalyzer {
         System.out.println(CLI_Styling.DOTTED_BORDER_SHORT);
     }
 
+
     public static void printStudentDetails(List<Student> students) {
         if (students == null || students.isEmpty()) {
             System.out.println(CLI_Styling.RED + "⚠️ No students to display." + CLI_Styling.RESET);
@@ -105,9 +107,6 @@ public class ResultsAnalyzer {
         System.out.printf("Class Average: %.2f%n", averageMarks);
         System.out.println(CLI_Styling.RESET);
     }
-
-
-
 
 
     public static void printResultsTable(List<Student> students) {
