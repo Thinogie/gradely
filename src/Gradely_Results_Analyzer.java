@@ -1,6 +1,7 @@
 import command_line_interface.CLI_Components;
 import command_line_interface.CLI_Styling;
 import model.Student;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -39,7 +40,7 @@ public class Gradely_Results_Analyzer {
 
                     } while (true);
                     // Show analysis menu after adding students
-                    CLI_Components.runAnalysisMenu( students, scanner);
+                    CLI_Components.runAnalysisMenu(students, scanner);
                 case "2":
                     System.out.print("Enter the file path to read student data: " + CLI_Styling.RESET);
                     String filePath = scanner.nextLine().trim();
@@ -73,7 +74,6 @@ public class Gradely_Results_Analyzer {
                                     System.out.println(CLI_Styling.RED + "⚠️ Marks must be between 0 and 100: " + line + CLI_Styling.RESET);
                                     continue;
                                 }
-
                                 students.add(new Student(name, email, marks));
                                 successCount++;
                             } catch (NumberFormatException e) {

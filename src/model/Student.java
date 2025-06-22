@@ -57,11 +57,6 @@ public class Student {
     // Override the toString method to provide a string representation of the Student object
     @Override
     public String toString() {
-        return "Student{" +
-                "name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", studentId='" + studentId + '\'' +
-                ", marks=" + marks +
-                '}';
+        return "Student{" + "name='" + name + '\'' + ", email='" + email + '\'' + ", studentId='" + studentId + '\'' + ", marks=" + marks + '}';
     }
 }

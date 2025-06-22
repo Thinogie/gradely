@@ -14,7 +14,7 @@ public class CLI_Components {
 
     public static void runAnalysisMenu(List<Student> students, Scanner scanner) {
         while (true) {
-            CLI_Components.analysisMenu();
+            CLI_Components.printAnalysisMenu();
             System.out.print(CLI_Styling.YELLOW + "💡 Select an analysis option: " + CLI_Styling.RESET);
             String analysisChoice = scanner.nextLine().trim();
 
@@ -45,10 +45,8 @@ public class CLI_Components {
                     continue;
             }
 
-            System.out.println(CLI_Styling.YELLOW + "\n💡 What would you like to do next?\n");
-            System.out.println("1. Continue with analysis");
-            System.out.println("2. Export above document to a text file");
-            System.out.println("0. Exit program" + CLI_Styling.RESET);
+            System.out.println(CLI_Styling.YELLOW + "\n💡 What would you like to do next?\n"
+                    +"1. Continue with analysis\n"+"2. Export above document to a text file\n"+ "0. Exit program" + CLI_Styling.RESET);
             String nextAction = scanner.nextLine().trim();
 
             switch (nextAction) {
@@ -58,6 +56,7 @@ public class CLI_Components {
                 case "2":
                     try {
                         PrintStream originalOut = System.out;
+                        System.out.println();
                         String filename = "analysis_report_" + System.currentTimeMillis() + ".txt";
                         PrintStream fileOut = new PrintStream(filename);
                         System.setOut(fileOut);
@@ -106,31 +105,32 @@ public class CLI_Components {
     }
     public static void printInstructions() {
         System.out.println(CLI_Styling.WELCOME_BANNER);
-        System.out.println(CLI_Styling.YELLOW + "💡 Instructions:\n" + CLI_Styling.RESET);
-        System.out.println("* Select options from the menus by entering the corresponding number.");
-        System.out.println("* Ensure that the student details are valid.");
-        System.out.println("* Provide a valid email address.");
-        System.out.println("* You can either add students manually or read from a file.");
+        System.out.println(CLI_Styling.YELLOW + "💡 Instructions:\n" + CLI_Styling.RESET+"\n"+
+                "* Select options from the menus by entering the corresponding number."+"\n"+
+                "* Ensure that the student details are valid."+"\n"+
+                "* Provide a valid email address."+"\n"+ "* You can either add students manually or read from a file.");
     }
 
     public static void printMainMenu() {
         System.out.println();
         System.out.println(CLI_Styling.BLUE + CLI_Styling.MENU_BORDER + CLI_Styling.RESET);
-        System.out.println("1. Add student data manually");
-        System.out.println("2. Import student data from a text file");
-        System.out.println("0. Exit Program");
+        System.out.println("""
+                1. Add student data manually
+                2. Import student data from a text file
+                0. Exit Program""");
         System.out.println(CLI_Styling.BLUE + CLI_Styling.BOTTOM_BORDER + CLI_Styling.RESET);
     }
 
-    static void analysisMenu() {
+    static void printAnalysisMenu() {
         System.out.println();
         System.out.println(CLI_Styling.BLUE + CLI_Styling.ANALYSIS_BORDER + CLI_Styling.RESET);
-        System.out.println("1. Sort students by name alphabetically");
-        System.out.println("2. Sort students by marks");
-        System.out.println("3. View results analysis report");
-        System.out.println("4. View top students");
-        System.out.println("5. Print student details");
-        System.out.println("0. Exit Program");
+        System.out.println("""
+                1. Sort students by name alphabetically
+                2. Sort students by marks\s
+                3. View results analysis report
+                4. View top students
+                5. Print student details
+                0. Exit Program""");
         System.out.println(CLI_Styling.BLUE + CLI_Styling.BOTTOM_BORDER + CLI_Styling.RESET);
     }
     public static String promptForName(Scanner scanner) {
