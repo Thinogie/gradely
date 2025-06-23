@@ -18,6 +18,8 @@ import static service.ResultsAnalyzer.sortByMarks;
  */
 public class CLI_Components {
 
+    public static int numTopStudents;
+
     /**
      * Displays the analysis menu and handles user input for various analysis options.
      * Allows users to sort, view, and export student data.
@@ -49,9 +51,14 @@ public class CLI_Components {
                     ResultsAnalyzer.resultsReport(students);
                     break;
                 case "4":
-                    // Display the top 3 students
-                    ResultsAnalyzer.displayTopStudents(students, 3);
+                    // Display top students based on user input
+                    System.out.println("Enter the number of top students to display\n" +
+                            "(ex: Enter 5 to display top 5 students): ");
+                    numTopStudents = scanner.nextInt();
+                    ResultsAnalyzer.displayTopStudents(students, numTopStudents);
+                    scanner.nextLine();
                     break;
+
                 case "5":
                     // Display detailed information for all students
                     ResultsAnalyzer.displayStudentDetails(students);
@@ -99,8 +106,8 @@ public class CLI_Components {
                                 ResultsFileWriter.printResultsAnalysisToFile(students, fileOut, ResultsAnalyzer.topStudent, averageMarks, heading);
                                 break;
                             case "4":
-                                heading = "Top Performers Report";
-                                ResultsFileWriter.printTopStudentsToFile(students, fileOut, 3, heading);
+                                heading = "Top " + numTopStudents + " Performers Report";
+                                ResultsFileWriter.printTopStudentsToFile(students, fileOut, numTopStudents, heading);
                                 break;
                             case "5":
                                 heading = "Student Details";
@@ -137,9 +144,9 @@ public class CLI_Components {
         System.out.println(CLI_Styling.WELCOME_BANNER + "\n" + CLI_Styling.YELLOW + "💡 Instructions: \n");
         System.out.println(
                 "* Select options from the menus by entering the corresponding number.\n" +
-                "* Ensure that the student details are valid.\n" +
-                "* Provide a valid email address.\n" +
-                "* You can either add students manually or read from a file.\n" + CLI_Styling.RESET);
+                        "* Ensure that the student details are valid.\n" +
+                        "* Provide a valid email address.\n" +
+                        "* You can either add students manually or read from a file.\n" + CLI_Styling.RESET);
     }
 
     /**
