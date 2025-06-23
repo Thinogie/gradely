@@ -19,6 +19,7 @@ import static service.ResultsAnalyzer.sortByMarks;
 public class CLI_Components {
 
     public static int numTopStudents;
+    public static String heading ;
 
     /**
      * Displays the analysis menu and handles user input for various analysis options.
@@ -50,14 +51,23 @@ public class CLI_Components {
                     // Display a detailed results analysis report
                     ResultsAnalyzer.resultsReport(students);
                     break;
-                case "4":
-                    // Display top students based on user input
-                    System.out.println("Enter the number of top students to display\n" +
-                            "(ex: Enter 5 to display top 5 students): ");
-                    numTopStudents = scanner.nextInt();
-                    ResultsAnalyzer.displayTopStudents(students, numTopStudents);
-                    scanner.nextLine();
-                    break;
+               case "4":
+                        // Display top students based on user input
+                        while (true) {
+                            System.out.println("\nNumber of the top students to display: \n" +CLI_Styling.YELLOW+ "💡 ex: Enter 5 to display The Top 5 Students"+CLI_Styling.RESET);
+                            try {
+                                numTopStudents = Integer.parseInt(scanner.nextLine().trim());
+                                if (numTopStudents > 0 && numTopStudents <= students.size()) {
+                                    break;
+                                } else {
+                                    System.out.println(CLI_Styling.RED +"⚠️ File contain only "+ students.size() +" students."+"Therefore cannot display the top " + numTopStudents + " students." + CLI_Styling.RESET);
+                                }
+                            } catch (NumberFormatException e) {
+                                System.out.println(CLI_Styling.RED + "⚠️ Invalid input. Please enter a valid number." + CLI_Styling.RESET);
+                            }
+                        }
+                        ResultsAnalyzer.displayTopStudents(students, numTopStudents);
+                        break;
 
                 case "5":
                     // Display detailed information for all students
@@ -88,29 +98,42 @@ public class CLI_Components {
                     try {
                         PrintStream originalOut = System.out;
                         System.out.println();
-                        String filename = "analysis_report_" + System.currentTimeMillis() + ".txt";
-                        PrintStream fileOut = new PrintStream(filename);
-                        System.setOut(fileOut);
-                        String heading;
                         switch (analysisChoice) {
                             case "1":
-                                heading = "Student Results sorted by Students Names";
-                                ResultsFileWriter.printResultsTableToFile(students, fileOut, heading);
+                                heading = "Student Results(sorted by Students Names)Report";
                                 break;
                             case "2":
-                                heading = "Student Results sorted from Highest to Lowest Marks";
-                                ResultsFileWriter.printResultsTableToFile(students, fileOut, heading);
+                                heading = "Student Results(sorted by Marks)Report";
                                 break;
                             case "3":
                                 heading = "Student Results Analysis Report";
-                                ResultsFileWriter.printResultsAnalysisToFile(students, fileOut, ResultsAnalyzer.topStudent, averageMarks, heading);
                                 break;
                             case "4":
                                 heading = "Top " + numTopStudents + " Performers Report";
+                                break;
+                            case "5":
+                                heading = "Student Details Report";
+                                break;
+                            default:
+                                System.out.println(CLI_Styling.RED + "Invalid Choice. No document exported." + CLI_Styling.RESET);
+                                break;
+                        }
+                        String filename = heading + ".txt";
+                        PrintStream fileOut = new PrintStream(filename);
+                        System.setOut(fileOut);
+                        // Print the heading to the file
+                        switch (analysisChoice) {
+                            case "1":
+                            case "2":
+                                ResultsFileWriter.printResultsTableToFile(students, fileOut, heading);
+                                break;
+                            case "3":
+                                ResultsFileWriter.printResultsAnalysisToFile(students, fileOut, ResultsAnalyzer.topStudent, averageMarks, heading);
+                                break;
+                            case "4":
                                 ResultsFileWriter.printTopStudentsToFile(students, fileOut, numTopStudents, heading);
                                 break;
                             case "5":
-                                heading = "Student Details";
                                 ResultsFileWriter.printStudentInfoToFile(students, fileOut, heading);
                                 break;
                             default:
